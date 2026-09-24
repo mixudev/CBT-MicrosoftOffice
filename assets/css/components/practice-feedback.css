@@ -1,0 +1,50 @@
+/**
+ * Practice feedback box (shown after answering in practice mode)
+ */
+
+.practice-feedback-box {
+  margin-top: var(--sp-5);
+  padding: var(--sp-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+  display: none;
+}
+
+.practice-feedback-box.show {
+  display: block;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Mobile: icon-only feedback */
+.feedback-text-desktop {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .feedback-text-desktop {
+    display: none;
+  }
+  
+  .practice-feedback-badge {
+    justify-content: center;
+  }
+}
+
+/* Responsive helper classes */
+.text-detail-desktop {
+  display: inline;
+}
+
+.text-detail-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .text-detail-desktop {
+    display: none !important;
+  }
+  .text-detail-mobile {
+    display: inline !important;
+  }
+}

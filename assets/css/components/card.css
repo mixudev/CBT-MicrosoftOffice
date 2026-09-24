@@ -1,0 +1,214 @@
+/**
+ * Card, application card and navigation panel components
+ */
+
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow var(--t-fast), border-color var(--t-fast);
+}
+.card-hover:hover { box-shadow: var(--shadow-md); border-color: #cbd5e1; }
+
+.card-header {
+  padding: var(--sp-5) var(--sp-6);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-body { padding: var(--sp-6); }
+.card-footer {
+  padding: var(--sp-4) var(--sp-6);
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border-light);
+}
+
+/* ── Dashboard application cards ─────────────────────────────── */
+.apps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-6);
+}
+@media (min-width: 768px) {
+  .apps-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.app-card { display: flex; flex-direction: column; height: 100%; }
+.app-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-5);
+}
+
+.app-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.app-icon-excel { background: var(--color-excel); }
+.app-icon-ppt   { background: var(--color-ppt); }
+.app-icon-word  { background: var(--color-word); }
+
+.app-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-6);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+.app-meta-item { display: flex; align-items: center; gap: var(--sp-2); }
+.app-actions { display: flex; flex-direction: column; gap: var(--sp-2); margin-top: auto; }
+
+/* ── Question map ────────────────────────────────────────────── */
+.question-map-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: var(--sp-5);
+  position: sticky;
+  top: 80px;
+}
+
+/* Mobile: completely hidden, use fullscreen drawer instead */
+@media (max-width: 991px) {
+  .question-map-panel {
+    display: none !important;
+  }
+}
+.map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-4);
+}
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.45rem;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: var(--sp-1);
+}
+.q-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background-color var(--t-fast), border-color var(--t-fast);
+  padding: 2px;
+  user-select: none;
+}
+.q-cell:hover { background: var(--bg-muted); border-color: #94a3b8; }
+.q-cell:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+.q-cell .cell-icon { font-size: 0.65rem; line-height: 1; margin-top: 2px; }
+.q-cell.current { border: 2px solid var(--brand-primary); font-weight: 700; }
+.q-cell.answered { background: #ecfdf5; border-color: #a7f3d0; color: #065f46; }
+.q-cell.unanswered { background: var(--bg-subtle); color: var(--text-muted); }
+.q-cell.marked { background: #fffbeb; border-color: #fde68a; color: #b45309; }
+.q-cell.marked.answered { background: #fef3c7; border-color: #f59e0b; }
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-3);
+  border-top: 1px solid var(--border-light);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+.legend-item { display: flex; align-items: center; gap: var(--sp-1); }
+
+/* ── Responsive map drawer ──────────────────────────────────── */
+.mobile-map-toggle { display: inline-flex; }
+@media (min-width: 992px) { .mobile-map-toggle { display: none; } }
+
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  z-index: 50;
+  display: none;
+  backdrop-filter: blur(2px);
+}
+.drawer-backdrop.active { display: block; }
+.drawer-content {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: var(--sp-6);
+  z-index: 51;
+  max-height: 80vh;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform var(--t-normal);
+}
+.drawer-backdrop.active .drawer-content { transform: translateY(0); }
+
+/* ── Exam layout ─────────────────────────────────────────────── */
+.exam-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-6);
+  margin-top: var(--sp-6);
+}
+@media (min-width: 992px) {
+  .exam-layout { grid-template-columns: 1fr 320px; align-items: start; }
+}
+
+.question-container { display: flex; flex-direction: column; gap: var(--sp-5); }
+.question-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--border-light);
+}
+.question-prompt {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-top: var(--sp-2);
+}
+.options-list { display: flex; flex-direction: column; gap: var(--sp-3); margin-top: var(--sp-4); }
+
+.exam-footer-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-top: var(--sp-6);
+  padding-top: var(--sp-5);
+  border-top: 1px solid var(--border-light);
+  flex-wrap: wrap;
+}
+.nav-center-action { display: flex; gap: var(--sp-2); }
+
+@media (max-width: 480px) {
+  .exam-footer-nav > .btn { flex: 1; min-width: 0; }
+  .nav-center-action { order: 3; width: 100%; }
+  .nav-center-action .btn { width: 100%; }
+}

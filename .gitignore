@@ -1,0 +1,55 @@
+# --- Vercel ---
+.vercel/
+
+# --- Hermes agent internals (plans/session artifacts) ---
+.hermes/
+
+# --- Dependencies (walaupun proyek zero-build, jaga-jaga) ---
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# --- Environment & secrets (wajib aman) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+credentials.json
+
+# --- Logs & debug ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Editor / IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Build / cache ---
+.cache/
+.parcel-cache/
+dist/
+tmp/
+temp/
+
+# --- Testing / coverage ---
+coverage/
+.nyc_output/
+
+# --- OS ---
+.Spotlight-V100
+.Trashes
+ehthumbs.db

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulasi Ujian CBT Microsoft Office 2019 (Excel, PowerPoint, Word) berbasis Modul Mahasiswa Office 2016 dan standar durasi ujian MOS.">
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <title>Microsoft Office 2019 Practice Lab | Simulasi CBT Mandiri</title>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components/button.css">
+  <link rel="stylesheet" href="assets/css/components/badge.css">
+  <link rel="stylesheet" href="assets/css/components/card.css">
+  <link rel="stylesheet" href="assets/css/components/alert.css">
+  <link rel="stylesheet" href="assets/css/components/modal.css">
+  <link rel="stylesheet" href="assets/css/components/animations.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="navbar" aria-label="Main Navigation">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-link" aria-label="Kembali ke Beranda">
+        <img src="assets/images/logo.png" alt="Logo" style="width:40px;height:40px;object-fit:contain;margin-right:0.75rem;" onerror="this.style.display='none'">
+        <div class="brand-text">
+          <span class="brand-title">Microsoft Office 2019</span>
+          <span class="brand-subtitle">Practice Lab CBT</span>
+        </div>
+      </a>
+      <div class="nav-actions" aria-hidden="true"></div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      
+      <!-- Hero Section -->
+      <section style="margin-bottom:2.5rem;text-align:center;max-width:760px;margin-inline:auto;">
+        <span class="badge badge-excel" style="margin-bottom:0.75rem;">Simulasi Ujian Microsoft</span>
+        <h1 style="margin-bottom:0.75rem;font-size:2.25rem;letter-spacing:-0.02em;">Practice Microsoft Office 2019</h1>
+        <p style="font-size:1.1rem;color:var(--text-secondary);margin-bottom:1.25rem;">
+          Platform latihan mandiri CBT berbasis materi modul kampus untuk mempersiapkan ujian sertifikasi Microsoft Excel, PowerPoint, dan Word.
+        </p>
+        <div style="display:inline-flex;align-items:center;gap:0.75rem;background:var(--bg-surface);padding:0.5rem 1rem;border-radius:var(--radius-full);border:1px solid var(--border-light);font-size:0.85rem;color:var(--text-muted);flex-wrap:wrap;justify-content:center;">
+          <span class="text-detail-desktop">Durasi: <strong>50 Menit</strong></span>
+          <span class="separator-desktop">&bull;</span>
+          <span class="text-detail-desktop">Total <strong>40 Soal</strong> per modul</span>
+          <span class="separator-desktop">&bull;</span>
+          <span class="text-detail-desktop">Rata-rata <strong>&plusmn;75 dtk/soal</strong></span>
+          
+          <span class="text-detail-mobile"><strong>50 menit</strong> &bull; <strong>40 soal</strong> &bull; <strong>75dtk/soal</strong></span>
+        </div>
+      </section>
+
+      <!-- Active Ongoing Exam Banner -->
+      <div id="activeExamBanner" style="display:none;margin-bottom:2rem;">
+        <div class="alert alert-warning" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+          <div>
+            <strong>Simulasi Ujian Sedang Berjalan</strong>
+            <p id="activeExamDesc" style="font-size:0.85rem;margin-top:0.25rem;">Anda memiliki sesi ujian yang belum selesai.</p>
+          </div>
+          <div style="display:flex;gap:0.5rem;">
+            <a id="btnResumeExam" href="exam.html" class="btn btn-warning btn-sm">Lanjutkan Ujian</a>
+            <button id="btnDiscardExam" type="button" class="btn btn-outline btn-sm">Batalkan Sesi</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Combined Exam Card -->
+      <article class="card card-hover app-card" style="grid-column: 1 / -1; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid rgba(14,165,233,0.2); box-shadow: 0 4px 12px rgba(14,165,233,0.1);">
+        <div class="card-body">
+          <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+            <!-- Logo -->
+            <div style="flex-shrink:0;">
+              <img src="assets/images/logo.png" alt="Microsoft Office Specialist" style="width:80px;height:80px;object-fit:contain;" onerror="this.style.display='none'">
+            </div>
+            
+            <!-- Content -->
+            <div style="flex:1;min-width:300px;">
+              <h3 style="font-size:1.75rem;margin-bottom:0.5rem;font-weight:800;color:var(--text-primary);">
+                Microsoft Office Specialist 2019
+              </h3>
+              <p style="font-size:1.05rem;color:var(--text-secondary);margin-bottom:0.75rem;font-weight:600;">
+                Combined Certification Exam
+              </p>
+              <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font-size:0.9rem;color:var(--text-muted);">
+                <span>
+                  <strong>90 Soal</strong>
+                  <span class="text-detail-desktop"> (Excel, PowerPoint, Word)</span>
+                </span>
+                <span class="separator-desktop">&bull;</span>
+                <span>
+                  <strong>120 Menit</strong>
+                  <span class="text-detail-desktop"> (2 jam)</span>
+                </span>
+                <span class="separator-desktop">&bull;</span>
+                <span class="text-detail-desktop">Simulasi ujian gabungan</span>
+              </div>
+            </div>
+            
+            <!-- Actions -->
+            <div style="display:flex;flex-direction:column;gap:0.75rem;min-width:220px;">
+              <button onclick="showCombinedExamModal()" class="btn btn-primary" style="font-size:1rem;padding:0.875rem 1.75rem;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;box-shadow:0 2px 8px rgba(59,130,246,0.3);transition:all 0.2s ease;">
+                <img src="assets/images/play-icon.svg" alt="" style="width:20px;height:20px;filter:brightness(0) invert(1);" onerror="this.style.display='none'">
+                Mulai Ujian
+              </button>
+              <a href="docs/MOS-2019-Module.pdf" download class="btn btn-outline" style="font-size:0.95rem;padding:0.75rem 1.5rem;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;transition:all 0.2s ease;">
+                <img src="assets/images/download-icon.svg" alt="" style="width:18px;height:18px;" onerror="this.style.display='none'">
+                Download Modul
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <hr style="grid-column: 1 / -1; border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0;">
+
+      <!-- Application Selection Cards -->
+      <section aria-labelledby="apps-heading">
+        <h2 id="apps-heading" class="sr-only">Pilih Modul Aplikasi</h2>
+        <div class="apps-grid">
+
+          <!-- Excel Card -->
+          <article class="card card-hover app-card">
+            <div class="card-body">
+              <div class="app-card-top">
+                <div class="app-icon-box" style="background:none;padding:0;border:none;">
+                  <img src="assets/images/excel-icon.png" alt="Excel" style="width:48px;height:48px;object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <h3 style="font-size:1.25rem;">Excel 2019</h3>
+                  <span class="badge badge-excel">Spreadsheet Analysis</span>
+                </div>
+              </div>
+
+              <div class="app-meta-list">
+                <div class="app-meta-item text-detail-desktop">
+                  <strong>40 Soal</strong>
+                  <span> (Pilihan Ganda A-E)</span>
+                </div>
+                <div class="app-meta-item text-detail-desktop">
+                  <strong>50 Menit</strong>
+                  <span> (Timer)</span>
+                </div>
+                <div class="app-meta-item text-detail-desktop">
+                  <span>Formula, SUMIF/S, Pivot Table, Chart, Goal Seek</span>
+                </div>
+                <div class="app-meta-item text-detail-mobile">
+                  40 soal &bull; 50 menit &bull; 75dtk/soal
+                </div>
+              </div>
+
+              <div class="app-actions">
+                <a href="exam.html?app=excel" class="btn btn-excel btn-block" id="btn-exam-excel">Mulai Exam Simulation</a>
+                <a href="practice.html?app=excel" class="btn btn-outline btn-block" id="btn-practice-excel">Practice Mode (Tanpa Timer)</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PowerPoint Card -->
+          <article class="card card-hover app-card">
+            <div class="card-body">
+              <div class="app-card-top">
+                <div class="app-icon-box" style="background:none;padding:0;border:none;">
+                  <img src="assets/images/powerpoint-icon.png" alt="PowerPoint" style="width:48px;height:48px;object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <h3 style="font-size:1.25rem;">PowerPoint 2019</h3>
+                  <span class="badge badge-ppt">Visual Presentation</span>
+                </div>
+              </div>
+
+              <div class="app-meta-list">
+                <div class="app-meta-item text-detail-desktop">
+                  <strong>40 Soal</strong>
+                  <span> (Pilihan Ganda A-E)</span>
+                </div>
+                <div class="app-meta-item text-detail-desktop">
+                  <strong>50 Menit</strong>
+                  <span> (Timer)</span>
+                </div>
+                <div class="app-meta-item text-detail-desktop">
+                  <span>Slide Master, SmartArt, Video Trim, Animations</span>
+                </div>
+                <div class="app-meta-item text-detail-mobile">
+                  40 soal &bull; 50 menit &bull; 75dtk/soal
+                </div>
+              </div>
+
+              <div class="app-actions">
+                <a href="exam.html?app=powerpoint" class="btn btn-ppt btn-block" id="btn-exam-ppt">Mulai Exam Simulation</a>
+                <a href="practice.html?app=powerpoint" class="btn btn-outline btn-block" id="btn-practice-ppt">Practice Mode (Tanpa Timer)</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Word Card -->
+          <article class="card card-hover app-card">
+            <div class="card-body">
+              <div class="app-card-top">
+                <div class="app-icon-box" style="background:none;padding:0;border:none;">
+                  <img src="assets/images/word-icon.png" alt="Word" style="width:48px;height:48px;object-fit:contain;" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <h3 style="font-size:1.25rem;">Word 2019</h3>
+                  <span class="badge badge-word">Document Publishing</span>
+                </div>
+              </div>
+
+              <div class="app-meta-list">
+                <div class="app-meta-item text-detail-desktop">
+                  <strong>40 Soal</strong>
+                  <span> (Pilihan Ganda A-E)</span>
+                </div>
+                <div class="app-meta-item text-detail-desktop">
+                  <strong>50 Menit</strong>
+                  <span> (Timer)</span>
+                </div>
+                <div class="app-meta-item text-detail-desktop">
+                  <span>Section Breaks, Table of Contents, Mail Merge</span>
+                </div>
+                <div class="app-meta-item text-detail-mobile">
+                  40 soal &bull; 50 menit &bull; 75dtk/soal
+                </div>
+              </div>
+
+              <div class="app-actions">
+                <a href="exam.html?app=word" class="btn btn-word btn-block" id="btn-exam-word">Mulai Exam Simulation</a>
+                <a href="practice.html?app=word" class="btn btn-outline btn-block" id="btn-practice-word">Practice Mode (Tanpa Timer)</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Recent Practice History -->
+      <section style="margin-top:3.5rem;">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3>Your Recent Practice</h3>
+              <p style="font-size:0.85rem;margin-top:2px;">Riwayat skor simulasi yang tersimpan di perangkat lokal Anda.</p>
+            </div>
+            <button id="btnClearHistory" type="button" class="btn btn-outline btn-sm" style="display:none;">Hapus Riwayat</button>
+          </div>
+          <div class="card-body">
+            <div id="emptyHistoryNotice" style="text-align:center;padding:2rem 1rem;color:var(--text-muted);">
+              <p style="font-size:1rem;font-weight:500;">Belum ada hasil latihan.</p>
+              <p style="font-size:0.85rem;margin-top:0.5rem;">Pilih salah satu aplikasi di atas untuk memulai simulasi ujian atau latihan mandiri.</p>
+            </div>
+            <div id="recentHistoryContainer"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Exam Rules Information -->
+      <section style="margin-top:2rem;">
+        <div class="alert alert-info">
+          <div>
+            <strong>Panduan Simulasi Ujian (Exam Mode):</strong>
+            <ul style="margin-left:1.25rem;margin-top:0.5rem;font-size:0.85rem;line-height:1.6;">
+              <li>Waktu simulasi mengikuti durasi ujian MOS: <strong>50 menit (3000 detik)</strong>.</li>
+              <li>Terdapat <strong>40 soal pilihan ganda</strong> dengan 5 opsi (A, B, C, D, E).</li>
+              <li>Timer tidak dapat di-pause. Jika halaman direfresh, waktu tetap berjalan sesuai timestamp.</li>
+              <li>Peringatan waktu otomatis tampil saat tersisa 10 menit, 5 menit, dan 1 menit.</li>
+              <li>Hasil nilai, pembahasan komprehensif, dan materi yang perlu diulang dapat diakses setelah submit.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div style="max-width:700px;font-size:0.8rem;line-height:1.4;color:var(--text-muted);">
+        <p class="footer-text-desktop">
+          <strong>Independent Practice Tool.</strong> Not affiliated with Microsoft, Certiport, or TrustTrain. 
+          Soal latihan original disusun berdasarkan Modul Mahasiswa Office 2016 dan diselaraskan untuk persiapan ujian fitur Microsoft Office 2019.
+        </p>
+        <p class="footer-text-mobile">
+          <strong>Practice Tool</strong> &mdash; Not affiliated with Microsoft.
+        </p>
+      </div>
+      <div style="font-size:0.8rem;color:var(--text-muted);">
+        Static CBT Engine &bull; LocalStorage Powered
+      </div>
+    </div>
+  </footer>
+
+  <!-- Combined Exam Info Modal -->
+  <div id="combinedExamModal" class="modal-backdrop" style="display:none;">
+    <div class="modal-dialog" role="dialog" aria-labelledby="combinedExamTitle" aria-modal="true" style="max-width:560px;">
+      <div class="modal-header">
+        <h3 id="combinedExamTitle" style="font-size:1.25rem;margin:0;font-weight:700;">Microsoft Office 2019</h3>
+        <button type="button" class="modal-close" onclick="hideCombinedExamModal()" aria-label="Tutup" style="background:rgba(0,0,0,0.05);border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s ease;padding:0;" onmouseover="this.style.background='rgba(0,0,0,0.1)'" onmouseout="this.style.background='rgba(0,0,0,0.05)'">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4L4 12M4 4l8 8"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" style="padding:1.5rem;">
+        <div style="background:var(--bg-surface);padding:1rem;border-radius:var(--radius-sm);border:1px solid var(--border);margin-bottom:1.25rem;">
+          <h4 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem;color:var(--text-secondary);">Format Ujian</h4>
+          <ul style="margin:0;padding-left:1.25rem;font-size:0.9rem;line-height:1.8;color:var(--text-primary);">
+            <li><strong>90 Soal</strong>: Excel (30) + PowerPoint (30) + Word (30)</li>
+            <li><strong>120 Menit</strong> (2 jam) dengan timer countdown</li>
+            <li>Soal dipilih acak dari total 120 soal tersedia</li>
+            <li>Urutan soal dan opsi jawaban diacak</li>
+          </ul>
+        </div>
+        
+        <div style="background:var(--status-warning-bg);padding:1rem;border-radius:var(--radius-sm);border:1px solid var(--status-warning);margin-bottom:1.25rem;">
+          <h4 style="font-size:0.95rem;font-weight:700;margin-bottom:0.5rem;color:var(--text-secondary);">Aturan Ujian</h4>
+          <ul style="margin:0;padding-left:1.25rem;font-size:0.85rem;line-height:1.6;color:var(--text-primary);">
+            <li>Timer tidak dapat di-pause atau dihentikan</li>
+            <li>Refresh halaman tidak mereset timer (timestamp-based)</li>
+            <li>Sistem otomatis submit saat waktu habis (00:00)</li>
+            <li>Anda dapat menandai soal untuk direview nanti</li>
+            <li>Hasil final dan pembahasan ditampilkan setelah submit</li>
+          </ul>
+        </div>
+        
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.5rem;text-align:center;">
+          Pastikan Anda siap dan memiliki waktu luang 2 jam sebelum memulai.
+        </p>
+        
+        <div style="display:flex;gap:0.75rem;">
+          <button onclick="hideCombinedExamModal()" class="btn btn-outline" style="flex:1;">Batal</button>
+          <button onclick="confirmStartCombinedExam()" class="btn btn-primary" style="flex:2;">Mulai Sekarang</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/components/modal-alert.js"></script>
+  <script src="assets/js/core/constants.js"></script>
+  <script src="assets/js/services/storage.js"></script>
+  <script src="assets/js/pages/dashboard.js"></script>
+</body>
+</html>

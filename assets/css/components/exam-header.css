@@ -1,0 +1,32 @@
+/**
+ * Exam header styles - Separate desktop and mobile components
+ */
+
+.exam-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg-surface);
+  border-bottom: 2px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Mobile Header - default (< 992px) */
+.exam-header-mobile {
+  display: block;
+}
+
+.exam-header-desktop {
+  display: none;
+}
+
+/* Desktop Header (>= 992px) */
+@media (min-width: 992px) {
+  .exam-header-mobile {
+    display: none;
+  }
+  
+  .exam-header-desktop {
+    display: block;
+  }
+}

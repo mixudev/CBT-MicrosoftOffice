@@ -1,0 +1,64 @@
+/**
+ * Badge component
+ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border: 1px solid transparent;
+}
+
+.badge-excel {
+  background: var(--color-excel-bg);
+  color: var(--color-excel);
+  border-color: #a7f3d0;
+}
+
+.badge-ppt {
+  background: var(--color-ppt-bg);
+  color: var(--color-ppt);
+  border-color: #fed7aa;
+}
+
+.badge-word {
+  background: var(--color-word-bg);
+  color: var(--color-word);
+  border-color: #bfdbfe;
+}
+
+.badge-neutral {
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  border-color: var(--border-light);
+}
+
+.badge-success {
+  background: var(--status-success-bg);
+  color: var(--status-success);
+  border-color: #bbf7d0;
+}
+
+.badge-warning {
+  background: var(--status-warning-bg);
+  color: var(--status-warning);
+  border-color: #fde68a;
+}
+
+.badge-danger {
+  background: var(--status-danger-bg);
+  color: var(--status-danger);
+  border-color: #fecaca;
+}
+
+.badge-info {
+  background: var(--status-info-bg);
+  color: var(--status-info);
+  border-color: #bfdbfe;
+}

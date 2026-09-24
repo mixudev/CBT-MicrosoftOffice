@@ -1,0 +1,196 @@
+/**
+ * Result page specific styles
+ */
+
+.result-header-card {
+  text-align: center;
+  padding: var(--sp-10) var(--sp-6);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--sp-8);
+  box-shadow: var(--shadow-sm);
+}
+
+.score-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: var(--sp-6) 0;
+}
+
+.score-percentage {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--brand-primary);
+}
+
+.score-ratio {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: var(--sp-2);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-4);
+  margin-top: var(--sp-6);
+}
+
+@media (min-width: 640px) {
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.stat-item {
+  background: var(--bg-subtle);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-4);
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-top: var(--sp-1);
+}
+
+/* Topic breakdown table */
+.breakdown-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--sp-4);
+}
+
+.breakdown-table th,
+.breakdown-table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.breakdown-table th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-subtle);
+}
+
+/* Question review items */
+.review-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--sp-5);
+  overflow: hidden;
+}
+
+.review-item-header {
+  padding: var(--sp-4) var(--sp-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: var(--bg-surface);
+  transition: background-color var(--t-fast);
+}
+
+.review-item-header:hover {
+  background: var(--bg-subtle);
+}
+
+.review-item-body {
+  padding: var(--sp-5);
+  border-top: 1px solid var(--border-light);
+  background: #fafbfc;
+}
+
+/* Collapsible review item with smooth animation */
+.review-item-body {
+  max-height: 2000px;
+  opacity: 1;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  overflow: hidden;
+}
+
+.review-item.collapsed .review-item-body {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top: none;
+}
+
+.review-item-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.review-item-toggle svg {
+  width: 1em;
+  height: 1em;
+  transition: transform var(--t-fast);
+}
+
+.review-item.collapsed .review-item-toggle svg {
+  transform: rotate(-90deg);
+}
+
+/* Filter label responsive */
+.filter-label-mobile {
+  display: none;
+}
+
+/* Lesson badge hide on mobile */
+.lesson-badge-desktop {
+  display: inline-flex;
+}
+
+@media (max-width: 768px) {
+  .filter-label-desktop {
+    display: none;
+  }
+  .filter-label-mobile {
+    display: inline;
+    margin-left: 0.25rem;
+    font-weight: 600;
+  }
+  
+  /* Hide lesson detail badge on mobile */
+  .lesson-badge-desktop {
+    display: none;
+  }
+  
+  /* Hide status text labels on mobile, show icon only */
+  .status-text-desktop {
+    display: none;
+  }
+  
+  .status-icon-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* App badge compact */
+  .result-app-badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    text-transform: none;
+  }
+}

@@ -1,0 +1,38 @@
+/**
+ * Alert component
+ */
+
+.alert {
+  padding: 0.85rem 1.2rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border: 1px solid;
+}
+
+.alert-warning {
+  background: var(--status-warning-bg);
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.alert-info {
+  background: var(--status-info-bg);
+  border-color: #bfdbfe;
+  color: #1e40af;
+}
+
+.alert-success {
+  background: var(--status-success-bg);
+  border-color: #bbf7d0;
+  color: #166534;
+}
+
+.alert-danger {
+  background: var(--status-danger-bg);
+  border-color: #fecaca;
+  color: #991b1b;
+}

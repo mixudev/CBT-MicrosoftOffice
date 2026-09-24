@@ -1,0 +1,183 @@
+/**
+ * Button component styles
+ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 0.55rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1.3;
+  user-select: none;
+  transition: background-color var(--t-fast), border-color var(--t-fast), color var(--t-fast), transform var(--t-fast);
+  white-space: nowrap;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Variants */
+.btn-primary {
+  background: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+}
+.btn-primary:hover {
+  background: var(--brand-primary-hover);
+  border-color: var(--brand-primary-hover);
+}
+
+.btn-secondary {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+.btn-secondary:hover {
+  background: var(--bg-muted);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border-light);
+}
+.btn-outline:hover {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+  border-color: #94a3b8;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: transparent;
+}
+.btn-ghost:hover {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+.btn-danger {
+  background: var(--status-danger);
+  color: white;
+}
+.btn-danger:hover {
+  background: #b91c1c;
+}
+
+.btn-warning {
+  background: var(--status-warning-bg);
+  color: var(--status-warning);
+  border-color: #fde68a;
+}
+.btn-warning:hover {
+  background: #fef3c7;
+}
+
+/* App specific */
+.btn-excel { background: var(--color-excel); color: white; border-color: var(--color-excel); }
+.btn-excel:hover { background: #0d6334; border-color: #0d6334; }
+
+.btn-ppt   { background: var(--color-ppt); color: white; border-color: var(--color-ppt); }
+.btn-ppt:hover   { background: #b33101; border-color: #b33101; }
+
+.btn-word  { background: var(--color-word); color: white; border-color: var(--color-word); }
+.btn-word:hover  { background: #12458f; border-color: #12458f; }
+
+/* Sizes */
+.btn-sm {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+  gap: var(--sp-1);
+}
+
+.btn-lg {
+  padding: 0.75rem 1.6rem;
+  font-size: 1rem;
+}
+
+.btn-block { width: 100%; }
+
+/* Icon inside button */
+.btn svg {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+/* Floating Action Button */
+.fab-button {
+  position: fixed;
+  bottom: 48px;
+  right: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 26px 0 0 26px;
+  background: rgba(79, 70, 229, 0.72);
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: none;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.fab-button:hover {
+  background: rgba(79, 70, 229, 0.88);
+  transform: translateX(-3px);
+}
+
+.fab-button:active {
+  transform: translateX(-1px) scale(0.96);
+}
+
+/* Show FAB on mobile only */
+@media (max-width: 991px) {
+  .fab-button {
+    display: flex;
+  }
+}
+
+/* Responsive button text helpers */
+.btn-text-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .btn-text-full {
+    display: none;
+  }
+  .btn-text-mobile {
+    display: inline;
+  }
+  
+  /* Make modal buttons compact on mobile */
+  .modal-footer .btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+  
+  /* Make exam footer nav buttons compact on mobile */
+  .exam-footer-nav .btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}

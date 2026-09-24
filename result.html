@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hasil Simulasi Ujian CBT Microsoft Office 2019 - Analisis Skor, Breakdown Materi, dan Pembahasan Lengkap.">
+  <title>Hasil Simulasi Ujian | Microsoft Office 2019 Practice Lab</title>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components/button.css">
+  <link rel="stylesheet" href="assets/css/components/badge.css">
+  <link rel="stylesheet" href="assets/css/components/card.css">
+  <link rel="stylesheet" href="assets/css/components/alert.css">
+  <link rel="stylesheet" href="assets/css/components/result.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-link">
+        <div class="brand-icon">M</div>
+        <div class="brand-text">
+          <span class="brand-title">Microsoft Office 2019</span>
+          <span class="brand-subtitle">Practice Lab CBT</span>
+        </div>
+      </a>
+      <a href="index.html" class="btn btn-outline btn-sm">Beranda</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <div class="container container-narrow">
+      
+      <!-- Tab Navigation -->
+      <div class="result-tabs" style="margin:2rem 0 1.5rem;">
+        <div class="tab-buttons" role="tablist" style="display:flex;gap:0.5rem;border-bottom:2px solid var(--border);overflow-x:auto;">
+          <button class="tab-btn active" data-tab="stats" role="tab" aria-selected="true" onclick="switchResultTab('stats')" style="padding:0.75rem 1.5rem;border:none;background:none;font-weight:600;border-bottom:3px solid var(--color-primary);color:var(--color-primary);cursor:pointer;white-space:nowrap;">Ringkasan &amp; Stats</button>
+          <button class="tab-btn" data-tab="analysis" role="tab" aria-selected="false" onclick="switchResultTab('analysis')" style="padding:0.75rem 1.5rem;border:none;background:none;font-weight:600;border-bottom:3px solid transparent;color:var(--text-muted);cursor:pointer;white-space:nowrap;">Analisis &amp; Topik</button>
+          <button class="tab-btn" data-tab="review" role="tab" aria-selected="false" onclick="switchResultTab('review')" style="padding:0.75rem 1.5rem;border:none;background:none;font-weight:600;border-bottom:3px solid transparent;color:var(--text-muted);cursor:pointer;white-space:nowrap;">Review Soal</button>
+        </div>
+      </div>
+
+      <!-- Result Header Card / Stats Tab -->
+      <section id="tabStats" class="result-header-card tab-content">
+        <span id="appBadge" class="badge badge-excel" style="margin-bottom:0.75rem;">Excel 2019</span>
+        <h1 style="font-size:1.85rem;margin-bottom:0.25rem;">Training Result</h1>
+        <p style="font-size:0.9rem;color:var(--text-muted);">
+          Hasil Evaluasi Latihan Mandiri CBT (Bukan Sertifikasi Resmi Microsoft)
+        </p>
+
+        <!-- Score Display -->
+        <div class="score-display">
+          <div id="scorePercentage" class="score-percentage">0%</div>
+          <div id="scoreRatio" class="score-ratio">0 / 40 Benar</div>
+          <div id="statusBadge" class="badge badge-neutral" style="margin-top:0.75rem;font-size:0.85rem;padding:0.35rem 0.85rem;">
+            Training Result
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div id="statCorrect" class="stat-value" style="color:var(--status-success);">0</div>
+            <div class="stat-label">Benar</div>
+          </div>
+          <div class="stat-item">
+            <div id="statWrong" class="stat-value" style="color:var(--status-danger);">0</div>
+            <div class="stat-label">Salah</div>
+          </div>
+          <div class="stat-item">
+            <div id="statUnanswered" class="stat-value" style="color:var(--text-muted);">0</div>
+            <div class="stat-label">Kosong</div>
+          </div>
+          <div class="stat-item">
+            <div id="statTimeUsed" class="stat-value">00:00</div>
+            <div class="stat-label">Waktu</div>
+          </div>
+        </div>
+
+        <div style="margin-top:1rem;font-size:0.8rem;color:var(--text-muted);">
+          Sisa: <strong id="statTimeRemaining">00:00</strong> dari <span id="totalDurationText">50 menit</span>
+        </div>
+
+        <!-- Actions -->
+        <div style="display:flex;justify-content:center;gap:0.75rem;margin-top:2rem;flex-wrap:wrap;">
+          <a id="btnRetryExam" href="exam.html" class="btn btn-primary">Coba Simulasi Baru</a>
+          <a id="btnPracticeMode" href="practice.html" class="btn btn-outline">Buka Practice Mode</a>
+          <a href="index.html" class="btn btn-secondary">Dashboard</a>
+        </div>
+      </section>
+
+      <!-- Topic Analytics / Analysis Tab -->
+      <section id="tabAnalysis" class="card tab-content" style="margin-bottom:2rem;display:none;">
+        <div class="card-header">
+          <div>
+            <h3>Analisis Penguasaan Materi</h3>
+            <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:2px;">
+              Pemetaan topik modul berdasarkan akurasi jawaban.
+            </p>
+          </div>
+        </div>
+        <div class="card-body">
+          
+          <!-- Per-App Breakdown (Combined Mode Only) -->
+          <div id="perAppBreakdownContainer" style="display:none;margin-bottom:1.5rem;"></div>
+
+          <!-- Strengths & Weaknesses -->
+          <div style="display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:1.5rem;">
+            <div id="boxNeedsReview" class="alert alert-warning" style="display:none;">
+              <div>
+                <strong>Materi yang Perlu Diulang:</strong>
+                <ul id="listNeedsReview" style="margin-left:1.25rem;margin-top:0.35rem;font-size:0.85rem;line-height:1.5;"></ul>
+              </div>
+            </div>
+
+            <div id="boxStrengths" class="alert alert-success" style="display:none;">
+              <div>
+                <strong>Materi yang Telah Dikuasai Baik:</strong>
+                <ul id="listStrengths" style="margin-left:1.25rem;margin-top:0.35rem;font-size:0.85rem;line-height:1.5;"></ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Breakdown Table -->
+          <div style="overflow-x:auto;">
+            <table class="breakdown-table">
+              <thead>
+                <tr>
+                  <th>Materi / Modul</th>
+                  <th>Benar</th>
+                  <th>Salah</th>
+                  <th>Kosong</th>
+                  <th>Akurasi</th>
+                </tr>
+              </thead>
+              <tbody id="lessonBreakdownTableBody"></tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Question Review / Review Tab -->
+      <section id="tabReview" class="card tab-content" style="margin-bottom:3rem;display:none;">
+        <div class="card-header" style="flex-wrap:wrap;gap:1rem;">
+          <div>
+            <h3>Review dan Pembahasan Soal</h3>
+            <p style="font-size:0.85rem;color:var(--text-secondary);margin-top:2px;">
+              Klik untuk melihat detail jawaban dan penjelasan.
+            </p>
+          </div>
+
+          <!-- Filter Buttons -->
+          <div id="filterButtonsContainer" style="display:flex;gap:0.4rem;flex-wrap:wrap;"></div>
+        </div>
+
+        <div class="card-body" id="reviewContainer">
+          <!-- Populated by result.js -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div style="max-width:700px;font-size:0.8rem;line-height:1.4;color:var(--text-muted);">
+        <p class="footer-text-desktop">
+          <strong>Independent Practice Tool.</strong> Not affiliated with Microsoft, Certiport, or TrustTrain. 
+          Simulasi latihan mandiri untuk memperdalam pemahaman praktis modul mahasiswa.
+        </p>
+        <p class="footer-text-mobile">
+          <strong>Practice Tool</strong> &mdash; Not affiliated with Microsoft.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/components/modal-alert.js"></script>
+  <script src="assets/js/core/constants.js"></script>
+  <script src="assets/js/services/storage.js"></script>
+  <script src="assets/js/components/icon.js"></script>
+  <script src="assets/js/pages/result.js"></script>
+</body>
+</html>

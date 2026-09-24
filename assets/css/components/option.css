@@ -1,0 +1,114 @@
+/**
+ * Option item component (exam/practice answer choices)
+ */
+
+.option-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  padding: 1rem 1.25rem;
+  background: var(--bg-surface);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--t-fast), border-color var(--t-fast);
+  text-align: left;
+  width: 100%;
+}
+
+.option-item:hover {
+  border-color: #cbd5e1;
+  background: #fbfcfe;
+}
+
+.option-item:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+.option-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  transition: background-color var(--t-fast), color var(--t-fast);
+}
+
+.option-text {
+  font-size: 0.975rem;
+  color: var(--text-primary);
+  line-height: 1.45;
+  flex: 1;
+}
+
+/* Selected state (exam mode) */
+.option-item.selected {
+  border-color: var(--brand-primary);
+  background: var(--brand-primary-light);
+  animation: scaleIn 0.2s ease;
+}
+.option-item.selected .option-key {
+  background: var(--brand-primary);
+  color: white;
+}
+
+/* Practice mode feedback states */
+.option-item.correct-revealed {
+  border-color: var(--status-success);
+  background: var(--status-success-bg);
+  animation: successPulse 0.4s ease;
+}
+.option-item.correct-revealed .option-key {
+  background: var(--status-success);
+  color: white;
+}
+
+.option-item.wrong-revealed {
+  border-color: var(--status-danger);
+  background: var(--status-danger-bg);
+  animation: shake 0.4s ease;
+}
+.option-item.wrong-revealed .option-key {
+  background: var(--status-danger);
+  color: white;
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes successPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}

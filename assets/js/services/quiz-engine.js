@@ -47,7 +47,8 @@ const QuizEngine = {
         }
         return {
           key: key,
-          text: opt.text
+          text: opt.text,
+          rationale: opt.rationale || ''
         };
       });
 
@@ -79,7 +80,10 @@ const QuizEngine = {
     return rawQuestions.map((q, idx) => ({
       ...q,
       index: idx,
-      options: q.options.map(opt => ({ ...opt }))
+      options: q.options.map(opt => ({
+        ...opt,
+        rationale: opt.rationale || ''
+      }))
     }));
   },
 
@@ -116,7 +120,11 @@ const QuizEngine = {
           if (opt.text === originalCorrectText) {
             newAnswerKey = key;
           }
-          return { key, text: opt.text };
+          return { 
+            key, 
+            text: opt.text,
+            rationale: opt.rationale || ''
+          };
         });
 
         return {
@@ -217,11 +225,17 @@ const QuizEngine = {
         question: q.question,
         lesson: q.lesson,
         tags: q.tags,
-        options: q.options,
+        options: q.options.map(opt => ({
+          key: opt.key,
+          text: opt.text,
+          rationale: opt.rationale || ''
+        })),
         selectedKey: selected,
         selectedText: chosenOption ? chosenOption.text : null,
+        selectedRationale: chosenOption ? (chosenOption.rationale || '') : null,
         correctKey: q.answer,
         correctText: correctOption ? correctOption.text : '',
+        correctRationale: correctOption ? (correctOption.rationale || q.explanation) : q.explanation,
         isAnswered: isAnswered,
         isCorrect: isCorrect,
         explanation: q.explanation

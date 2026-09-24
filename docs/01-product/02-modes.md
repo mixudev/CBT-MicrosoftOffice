@@ -10,6 +10,9 @@ Karakteristik:
 - Tampilkan status benar/salah.
 - Tampilkan jawaban benar.
 - Tampilkan explanation.
+- **Tampilkan rationale untuk opsi yang dipilih (mengapa salah & fungsi sebenarnya)**.
+- **Tampilkan rationale untuk kunci jawaban (mengapa benar)**.
+- **Opsi: Toggle untuk melihat bedah semua pilihan (A-E) beserta rationalenya**.
 - Tampilkan lesson sumber.
 - Sediakan reset jawaban.
 - Hasil Practice Mode tidak boleh mengubah active Exam Mode.
@@ -24,9 +27,11 @@ atau
 
 Lalu:
 
-- Jawaban Benar
-- Pembahasan
+- **Pilihan Anda: [X. Nama Fitur]** → Penjelasan mengapa keliru & fungsi aslinya
+- **Kunci Jawaban: [Y. Nama Fitur]** → Penjelasan mengapa benar
+- Pembahasan Umum
 - Lesson
+- Toggle: Bedah Semua Pilihan (A-E) → Rationale lengkap untuk setiap opsi
 
 ## 2. Exam Mode
 
@@ -63,9 +68,12 @@ Setelah submit tampilkan:
 - semua pertanyaan
 - jawaban user
 - jawaban benar
+- **rationale untuk jawaban yang dipilih user (jika salah: mengapa keliru)**
+- **rationale untuk kunci jawaban (mengapa benar)**
 - explanation
 - lesson
 - topic analysis
+- **toggle: bedah semua pilihan (A-E) dengan rationale lengkap**
 
 Action utama:
 

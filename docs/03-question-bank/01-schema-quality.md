@@ -1,4 +1,4 @@
-# Question Bank Schema & Quality Rules
+## Question Bank Schema & Quality Rules
 
 ## Originality & Attribution
 
@@ -19,6 +19,37 @@ Setiap soal harus dapat dijawab berdasarkan:
 - fungsi Office 2019 yang ekuivalen ketika nama menu/UI perlu dinormalisasi.
 
 Jangan memperluas scope menjadi fitur Office modern yang tidak relevan dengan modul.
+
+## Schema Structure
+
+Setiap soal memiliki struktur:
+
+```javascript
+{
+  id: "EXCEL-001",
+  app: "excel",
+  lesson: "Excel 1: Interface",
+  difficulty: "Basic",
+  question: "Pertanyaan soal?",
+  options: [
+    { 
+      key: "A", 
+      text: "Opsi jawaban",
+      rationale: "Benar/Salah. Penjelasan mengapa opsi ini benar/salah dan fungsi sebenarnya."
+    },
+    // ... 4 opsi lainnya (B, C, D, E)
+  ],
+  answer: "A",
+  explanation: "Penjelasan umum untuk soal ini.",
+  tags: ["Tag1", "Tag2"]
+}
+```
+
+**Field `rationale` pada setiap opsi (A-E):**
+- Untuk opsi BENAR: Jelaskan mengapa ini jawaban tepat sesuai fungsi Microsoft Office 2019.
+- Untuk opsi SALAH (distractor): Jelaskan apa fungsi sebenarnya dari fitur tersebut di aplikasi Microsoft Office dan kenapa tidak sesuai dengan konteks soal ini.
+- Bahasa Indonesia formal, edukatif, 50-150 karakter.
+- Membantu pengguna memahami seluruh opsi, bukan hanya kunci jawaban.
 
 ## Quality Rules
 

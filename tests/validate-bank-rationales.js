@@ -85,8 +85,10 @@ apps.forEach(app => {
         issues.push(`[${app.name} - ${q.id}] Option ${opt.key} has empty text`);
       }
 
-      // Check rationale
-      if (opt.rationale && opt.rationale.trim().length > 0) {
+      // Check rationale: every option must be fully explained before release.
+      if (!opt.rationale || opt.rationale.trim().length === 0) {
+        issues.push(`[${app.name} - ${q.id}] Option ${opt.key} is missing rationale`);
+      } else {
         totalRationales++;
         if (opt.rationale.trim().length < 15) {
           issues.push(`[${app.name} - ${q.id}] Option ${opt.key} rationale too short (${opt.rationale.length} chars)`);

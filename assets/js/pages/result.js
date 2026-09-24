@@ -259,6 +259,12 @@ function renderQuestionReview() {
               <div style="font-weight:600;margin-top:2px;">
                 ${q.isAnswered ? `${q.selectedKey}. ${q.selectedText}` : '<em style="color:var(--text-muted);">Tidak dijawab</em>'}
               </div>
+              ${q.isAnswered && !q.isCorrect && q.selectedRationale ? `
+                <div style="margin-top:0.5rem;padding-top:0.5rem;border-top:1px dashed #fca5a5;font-size:0.85rem;color:#7f1d1d;line-height:1.5;">
+                  <strong style="font-size:0.7rem;text-transform:uppercase;">Mengapa keliru:</strong><br>
+                  ${q.selectedRationale}
+                </div>
+              ` : ''}
             </div>
 
             <div style="background:var(--status-success-bg);padding:0.75rem 1rem;border-radius:var(--radius-sm);border:1px solid #bbf7d0;">
@@ -266,11 +272,49 @@ function renderQuestionReview() {
               <div style="font-weight:700;color:#166534;margin-top:2px;">
                 ${q.correctKey}. ${q.correctText}
               </div>
+              ${q.correctRationale ? `
+                <div style="margin-top:0.5rem;padding-top:0.5rem;border-top:1px dashed #86efac;font-size:0.85rem;color:#166534;line-height:1.5;">
+                  <strong style="font-size:0.7rem;text-transform:uppercase;">Penjelasan:</strong><br>
+                  ${q.correctRationale}
+                </div>
+              ` : ''}
             </div>
           </div>
 
+          ${q.options && q.options.length > 0 && q.options.some(opt => opt.rationale) ? `
+            <div style="margin-bottom:1rem;padding:0.75rem;background:var(--bg-subtle);border:1px solid var(--border-light);border-radius:var(--radius-sm);">
+              <button type="button" onclick="toggleResultOptionsBreakdown('${q.id}')" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:0.5rem;padding:0.5rem 0;color:var(--color-primary);font-weight:600;font-size:0.85rem;">
+                <span>${icon('list', {size:'1em'})}</span>
+                <span>Lihat Bedah Semua Pilihan (A - E)</span>
+                <span class="toggle-icon-result" style="margin-left:auto;">▼</span>
+              </button>
+              <div class="result-options-list-${q.id}" style="display:none;margin-top:0.75rem;">
+                ${q.options.map(opt => {
+                  const isThisCorrect = opt.key === q.correctKey;
+                  const isThisSelected = opt.key === q.selectedKey;
+                  let bgColor = 'var(--bg-surface)';
+                  let borderColor = 'var(--border-light)';
+                  if (isThisCorrect) {
+                    bgColor = '#f0fdf4';
+                    borderColor = '#86efac';
+                  } else if (isThisSelected) {
+                    bgColor = '#fef2f2';
+                    borderColor = '#fca5a5';
+                  }
+                  return `
+                    <div style="padding:0.6rem 0.75rem;border-radius:var(--radius-sm);background:${bgColor};border:1px solid ${borderColor};font-size:0.85rem;line-height:1.5;margin-bottom:0.5rem;">
+                      <strong style="color:var(--text-secondary);">${opt.key}.</strong>
+                      <strong style="color:var(--text-primary);">${opt.text}:</strong>
+                      <span style="margin-left:0.35rem;color:var(--text-secondary);">${opt.rationale || '(Penjelasan umum)'}</span>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          ` : ''}
+
           <div style="background:var(--bg-surface);padding:1rem;border-radius:var(--radius-sm);border:1px solid var(--border-light);font-size:0.9rem;line-height:1.5;">
-            <strong style="display:block;color:var(--text-secondary);margin-bottom:0.25rem;">Pembahasan:</strong>
+            <strong style="display:block;color:var(--text-secondary);margin-bottom:0.25rem;">Pembahasan Umum:</strong>
             <div>${q.explanation || 'Pembahasan materi modul.'}</div>
             ${q.tags && q.tags.length > 0 ? `<div style="margin-top:0.5rem;font-size:0.75rem;color:var(--text-muted);">Tags: ${q.tags.join(', ')}</div>` : ''}
           </div>
@@ -316,6 +360,22 @@ function toggleQuestion(qid) {
     }
   });
 }
+
+// Toggle all options breakdown in result review
+window.toggleResultOptionsBreakdown = function(qid) {
+  const list = document.querySelector(`.result-options-list-${qid}`);
+  if (!list) return;
+  const btn = list.previousElementSibling;
+  const icon = btn ? btn.querySelector('.toggle-icon-result') : null;
+  
+  if (list.style.display === 'none') {
+    list.style.display = 'block';
+    if (icon) icon.textContent = '▲';
+  } else {
+    list.style.display = 'none';
+    if (icon) icon.textContent = '▼';
+  }
+};
 
 // Tab switching
 let currentTab = 'stats';

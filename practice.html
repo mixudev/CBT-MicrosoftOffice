@@ -72,22 +72,26 @@
             </div>
 
             <!-- Immediate Practice Feedback Box -->
-            <div id="feedbackBox" class="practice-feedback-box" role="region" aria-live="polite">
-              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-                <span id="feedbackStatusBadge" class="badge badge-success practice-feedback-badge" style="font-size: 0.85rem;">
-                  ✓ <span class="feedback-text-desktop">Jawaban Benar</span>
-                </span>
-                <span class="text-detail-desktop" style="font-size: 0.85rem; color: var(--text-secondary);">
-                  Kunci: <strong id="feedbackCorrectAnswerKey">A</strong>
-                </span>
-              </div>
-              <div style="font-size: 0.95rem; line-height: 1.5; color: var(--text-primary);" id="feedbackExplanation">
-                Penjelasan materi akan tampil di sini.
-              </div>
-              <div class="text-detail-desktop" style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border-light); padding-top: 0.5rem;">
-                Sumber: <span id="feedbackLessonSource">Modul Office</span>
-              </div>
-            </div>
+                        <div id="feedbackBox" class="practice-feedback-box" role="region" aria-live="polite">
+                          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                            <span id="feedbackStatusBadge" class="badge badge-success practice-feedback-badge" style="font-size: 0.85rem;">
+                              ✓ <span class="feedback-text-desktop">Jawaban Benar</span>
+                            </span>
+                            <span class="text-detail-desktop" style="font-size: 0.85rem; color: var(--text-secondary);">
+                              Kunci: <strong id="feedbackCorrectAnswerKey">A</strong>
+                            </span>
+                          </div>
+                          <div style="font-size: 0.95rem; line-height: 1.5; color: var(--text-primary);" id="feedbackExplanation">
+                            Penjelasan materi akan tampil di sini.
+                          </div>
+
+                          <!-- Rationale Section: Why your answer is wrong/right -->
+                          <div id="feedbackRationaleSection" class="feedback-rationale-section"></div>
+
+                          <div class="text-detail-desktop" style="margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border-light); padding-top: 0.5rem;">
+                            Sumber: <span id="feedbackLessonSource">Modul Office</span>
+                          </div>
+                        </div>
 
             <!-- Navigation Controls -->
             <div class="exam-footer-nav">

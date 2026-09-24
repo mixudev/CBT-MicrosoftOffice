@@ -48,3 +48,116 @@
     display: inline !important;
   }
 }
+
+/* Rationale Section: Comprehensive answer explanations */
+.feedback-rationale-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+
+.rationale-card {
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.rationale-card.wrong {
+  background: var(--status-danger-bg);
+  border: 1px solid #fecaca;
+}
+
+.rationale-card.correct {
+  background: var(--status-success-bg);
+  border: 1px solid #bbf7d0;
+}
+
+.rationale-title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  margin-bottom: 0.4rem;
+  color: var(--text-secondary);
+}
+
+.rationale-card.wrong .rationale-title {
+  color: #991b1b;
+}
+
+.rationale-card.correct .rationale-title {
+  color: #166534;
+}
+
+.rationale-text {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+/* Toggle all options breakdown */
+.all-options-breakdown {
+  margin-top: var(--sp-4);
+  border-top: 1px dashed var(--border);
+  padding-top: var(--sp-3);
+}
+
+.btn-toggle-options-review {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0;
+  transition: opacity 0.2s ease;
+}
+
+.btn-toggle-options-review:hover {
+  opacity: 0.8;
+}
+
+.all-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.option-breakdown-row {
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.option-breakdown-row.is-correct {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.option-breakdown-row.is-selected-wrong {
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+.option-breakdown-key {
+  display: inline-block;
+  font-weight: 700;
+  margin-right: 0.35rem;
+  color: var(--text-secondary);
+}
+
+.option-breakdown-text {
+  color: var(--text-primary);
+}

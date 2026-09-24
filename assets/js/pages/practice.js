@@ -51,6 +51,7 @@
   const feedbackStatusBadge = document.getElementById('feedbackStatusBadge');
   const feedbackCorrectAnswerKey = document.getElementById('feedbackCorrectAnswerKey');
   const feedbackExplanation = document.getElementById('feedbackExplanation');
+  const feedbackRationaleSection = document.getElementById('feedbackRationaleSection');
   const feedbackLessonSource = document.getElementById('feedbackLessonSource');
   const btnPrev = document.getElementById('btnPrev');
   const btnNext = document.getElementById('btnNext');
@@ -113,11 +114,82 @@
         ? `${icon('checkCircle', {size:'0.9em'})} <span class="feedback-text-desktop">Jawaban Benar</span>`
         : `${icon('xCircle', {size:'0.9em'})} <span class="feedback-text-desktop">Jawaban Salah</span>`;
       const correctOpt = q.options.find(o => o.key === q.answer);
+      const selectedOpt = q.options.find(o => o.key === selectedKey);
+
       feedbackCorrectAnswerKey.textContent = `${q.answer}. ${correctOpt ? correctOpt.text : ''}`;
       feedbackExplanation.textContent = q.explanation || 'Tidak ada penjelasan tambahan.';
       feedbackLessonSource.textContent = q.lesson || 'Modul Mahasiswa Office 2016';
+
+      // Render rationale cards
+      if (feedbackRationaleSection) {
+        let rationaleHTML = '';
+
+        if (!isCorrect && selectedOpt) {
+          // Card 1: Why chosen answer is wrong & what it actually does
+          rationaleHTML += `
+            <div class="rationale-card wrong">
+              <div class="rationale-title">
+                ${icon('xCircle', {size:'1em'})}
+                <span>Pilihan Anda: ${selectedOpt.key}. ${selectedOpt.text}</span>
+              </div>
+              <div class="rationale-text">
+                ${selectedOpt.rationale || 'Opsi ini bukan jawaban yang tepat untuk pertanyaan ini.'}
+              </div>
+            </div>
+          `;
+        }
+
+        // Card 2: Why correct answer is right
+        if (correctOpt) {
+          rationaleHTML += `
+            <div class="rationale-card correct">
+              <div class="rationale-title">
+                ${icon('checkCircle', {size:'1em'})}
+                <span>Kunci Jawaban: ${correctOpt.key}. ${correctOpt.text}</span>
+              </div>
+              <div class="rationale-text">
+                ${correctOpt.rationale || q.explanation || 'Jawaban yang tepat sesuai modul.'}
+              </div>
+            </div>
+          `;
+        }
+
+        // Card 3: Toggle to review ALL options
+        const hasAnyRationale = q.options.some(opt => opt.rationale);
+        if (hasAnyRationale) {
+          rationaleHTML += `
+            <div class="all-options-breakdown">
+              <button type="button" class="btn-toggle-options-review" onclick="toggleAllOptionsBreakdown(this)">
+                <span>${icon('helpCircle', {size:'1em'})}</span>
+                <span>Bedah Semua Pilihan (A - E)</span>
+                <span class="toggle-icon">▼</span>
+              </button>
+              <div class="all-options-list" style="display: none;">
+                ${q.options.map(opt => {
+                  const isThisCorrect = opt.key === q.answer;
+                  const isThisSelected = opt.key === selectedKey;
+                  let rowClass = 'option-breakdown-row';
+                  if (isThisCorrect) rowClass += ' is-correct';
+                  else if (isThisSelected) rowClass += ' is-selected-wrong';
+
+                  return `
+                    <div class="${rowClass}">
+                      <strong class="option-breakdown-key">${opt.key}.</strong>
+                      <strong class="option-breakdown-text">${opt.text}:</strong>
+                      <span style="margin-left: 0.35rem; color: var(--text-secondary);">${opt.rationale || '(Penjelasan umum)'}</span>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        feedbackRationaleSection.innerHTML = rationaleHTML;
+      }
     } else {
       feedbackBox.className = 'practice-feedback-box';
+      if (feedbackRationaleSection) feedbackRationaleSection.innerHTML = '';
     }
 
     btnPrev.disabled = currentIndex === 0;
@@ -258,6 +330,18 @@
 
   window.returnToDashboard = function() {
     window.location.href = 'index.html';
+  };
+
+  window.toggleAllOptionsBreakdown = function(btn) {
+    const list = btn.nextElementSibling;
+    const icon = btn.querySelector('.toggle-icon');
+    if (list.style.display === 'none') {
+      list.style.display = 'flex';
+      if (icon) icon.textContent = '▲';
+    } else {
+      list.style.display = 'none';
+      if (icon) icon.textContent = '▼';
+    }
   };
 
   document.addEventListener('keydown', (e) => {
